@@ -1,0 +1,12 @@
+server {
+    listen       80;
+    server_name  localhost;
+
+    location / {
+        proxy_pass ${APP_SERVER};
+    }
+
+    location /request-count {
+      proxy_pass ${API_SERVER};
+    }
+}
