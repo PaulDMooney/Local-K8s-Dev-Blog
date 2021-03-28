@@ -8,8 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "dev:ssr": "ng run webapp:serve-ssr",
-    "serve:ssr": "node dist/webapp/server/main.js",
+    "dev:ssr": "node -r dotenv/config node_modules/.bin/ng run webapp:serve-ssr",
+    "serve:ssr": "node -r dotenv/config dist/webapp/server/main.js",
     "build:ssr": "ng build --prod && ng run webapp:server:production",
     "prerender": "ng run webapp:prerender"
   },

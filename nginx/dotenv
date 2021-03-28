@@ -1,0 +1,2 @@
+APP_SERVER=http://host.docker.internal:4200
+API_SERVER=http://host.docker.internal:3000

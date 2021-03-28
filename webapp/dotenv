@@ -1,0 +1,2 @@
+# Copy me to `.env` and modify as needed for local development
+API_SERVER=http://localhost:3000
