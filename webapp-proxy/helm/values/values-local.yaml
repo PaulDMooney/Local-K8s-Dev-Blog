@@ -1,0 +1,11 @@
+image:
+  pullPolicy: Never
+  tag: local
+
+env:
+  API_SERVER: http://request-count-server:3000
+  APP_SERVER: http://host.docker.internal:4200
+
+service:
+  type: NodePort
+  nodePort: 30002

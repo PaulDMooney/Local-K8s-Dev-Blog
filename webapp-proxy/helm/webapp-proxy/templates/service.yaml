@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "webapp-proxy.fullname" . }}
+  labels:
+    {{- include "webapp-proxy.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+      {{- with .Values.service.nodePort }}
+      nodePort: {{ . }}
+      {{- end }} 
+  selector:
+    {{- include "webapp-proxy.selectorLabels" . | nindent 4 }}
