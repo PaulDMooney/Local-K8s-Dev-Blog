@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "request-count-server.fullname" . }}
+  labels:
+    {{- include "request-count-server.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+      {{- with .Values.service.nodePort }}
+      nodePort: {{ . }}
+      {{- end }} 
+  selector:
+    {{- include "request-count-server.selectorLabels" . | nindent 4 }}

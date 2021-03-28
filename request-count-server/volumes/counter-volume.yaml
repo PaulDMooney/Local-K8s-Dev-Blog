@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: request-counter-volume
+spec:
+  storageClassName: "counter-volume"
+  accessModes:
+  - ReadWriteMany
+  capacity:
+    storage: 1Gi
+  hostPath:
+    path: "/Users/Shared/request-counter-volume"
+    type: DirectoryOrCreate

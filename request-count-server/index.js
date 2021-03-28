@@ -5,7 +5,7 @@ const util = require('util');
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
 
-const filePath = './countfile.txt';
+const filePath = process.env.COUNT_FILE_PATH || './countfile.txt';
 
 const app = express()
 const port = 3000

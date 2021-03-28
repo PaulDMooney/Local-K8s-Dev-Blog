@@ -1,0 +1,7 @@
+image:
+  pullPolicy: Never
+  tag: local
+
+service:
+  type: NodePort
+  nodePort: 30001
