@@ -77,16 +77,104 @@ This volume obviously differs from what you would use in your dev or prod Kubern
 
 One last thing, this is not unique to local Kubernetes development, if you ever delete the claim to this Persistent Volume you have to remember to delete and recreate the Persistent Volume too if you ever want to run your application again in the future.
 
+## Communicating from Kubernetes to the Host OS
 
+Often times I will be working on an application in the Host OS, most of my primary development is done here, you get the advantages of automatic rebuilds and IDE tooling, etc. There will be other applications that I'd like to run in Kubernetes that can talk to this application on the host OS. For example I may have a reverse proxy like nginx running in Kubernetes that needs to serve up my host OS application. This is surprisingly easy and done exactly the same as we would do it with just Docker or Docker Compose: with the `host.docker.internal` DNS name. 
+
+An example of my nginx config running on kubernetes that reverse proxies my app running on the host port 4200:
+```
+server {
+    listen       80;
+    server_name  localhost;
+
+    location / {
+        proxy_pass http://host.docker.internal:4200;
+    }
+```
+
+## Accessing the apps on Kubernetes
+
+Whether it be an application I'm developing on the host OS communicating with an application on Kubernetes or if I want to access the application on Kubernetes in a web browser or some kind of client, that application needs to be exposed. There are two ways to do this. The first, and not my recommended approach, is to use [kubectl port-forwarding](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/#forward-a-local-port-to-a-port-on-the-pod). I don't like this approach because you need to be re-run this command whenever you restart your cluster for every service that needs to be exposed. My preferred approach is to use a [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport) service.
+
+A NodePort exposes a port on the kubernetes node that you can access your application through and in Docker Desktop that exposes the port on your host OS.
+
+So I can create a service for my application like this:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service
+  labels:
+    app.kubernetes.io/name: my-app-service
+spec:
+  type: NodePort
+  ports:
+    - port: 3000
+      targetPort: http
+      protocol: TCP
+      name: http
+      nodePort: 30001 
+  selector:
+    app.kubernetes.io/name: my-app
+```
+
+And I can access my application at `localhost:30001`!
+
+I prefer to define my nodePort for predictability of the port, but you can leave it empty for Kubernetes to decide what it should be and then there's less chance of a collision for an already occupied port.
+
+Chances are your application's service might not be a ClusterIP or LoadBalancer type when deployed to other Kubernetes clusters, or that the nodePort will have a different value in those clusters. You can get around this by templating your service definition in [Helm](https://helm.sh/).
+
+<!-- TODO conclude the 5 criteria to making this work here? -->
 
 ## Helm
 
+Without Helm (or similar tools) using a local Kubernetes cluster for development is pointless beyond just experimentation purposes. We want use the local Kubernetes cluster so that our running applications will mirror shared environments like production as closely as possible. Helm lets us accomplish this by allowing us to template out our kubernetes manifests, and abstract out only the necessary environmental differences into [values files](https://helm.sh/docs/chart_template_guide/values_files/).
+
+When you're using Helm you'll be creating values files for at least every environment, I recommend creating values files for local clusters that can be shared with the team. You can even create personal "overrides" values files that you can use to change some minor configurations for your own purposes (just be sure to .gitignore them). Helm let's you chain these files together and gives precendence to the rightmost file. Eg, `helm upgrade my-app ./my-app -f values-local.yaml -f .values-override.yaml`.
+
+Another benefit of Helm is in it's package management. If your application requires another team's application up and running, they can publish their Helm chart to a remote repository like [ChartMuseum](https://github.com/helm/chartmuseum), you can install their application into your Kubernetes by naming that remote chart combined with a local values file. Eg, `helm install other-teams-app https://charts.mycompany.com/other-teams-app-1.2.3.tgz -f values-other-teams-app.yaml`. This is convenient because it means you don't have to checkout their project and dig through for their helm charts to get up and running, all you need to supply is your own values file.
+
 ## Scripting
 
-## Comparing to Docker Compose
+Working with kubernetes, and then layering in extra tools like Helm, there are a lot of commands to get to know. Most of your team will probably need some kind of containerized apps running locally, but it can be a high bar to expect them to know all of the docker and kubectl and helm commands. As well for your own convenience you want to take the things that are done often and condense them into some simpler scripts. Things like:
 
-### Building
-### Persistence / Volumes
-### Scripting
+* Build and Install your app on the kubernetes cluster: 
+```
+docker build --tag myimage:local \
+&& kubectl apply -f my-volume \
+&& my-helm install my-app ./my-app -f values-local.yaml
+```
+ <!-- TODO verify kubectl apply for pv -->
+* Build and restart your app: 
+```
+docker build --tag myimage:local \
+&& kubectl scale deployment my-app --replicas=0 \
+&& kubectl scale deployment my-app --replicas=3
+``` 
+<!-- TODO: does this work for stateful sets? --> 
+* Update your configuration: 
+```
+helm upgrade my-app ./my-app -f values-local.yaml
+```
+* Install another teams app: 
+```
+helm install other-teams-app https://charts.mycompany.com/other-teams-app-1.2.3.tgz -f values-other-teams-app.yaml
+```
+* Cleanup
+``` 
+helm uninstall my-app \
+&& kubectl delete -f my-volume.yaml
+&& rm -Rf /path/to/my-volume
+```
+
+It can be up to you how to script this whether it be in bash, Makefile, npm scripts, Gradle tasks. Whatever suits your team best.
+
+## Comparing to Docker Compose
+<!-- convenience of docker-compose for volumes, building, and running -->
+<!-- docker-compose isn't as accurate to production -->
+<!-- In a way we're duplicating the work between docker-compose.yamls and kubernetes manifests -->
+<!-- Running a local kubernetes requires a good familiarity with kubernetes, or some extra scripting to keep things simple -->
+<!-- Kubernetes with helm has the advantage of package manager like feature of conveniently installing someone else's app (??? but the tradeoff is any volumes and values you need to supply to get it to run) -->
 
 ## Final Thoughts
