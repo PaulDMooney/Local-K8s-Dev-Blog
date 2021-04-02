@@ -176,5 +176,8 @@ It can be up to you how to script this whether it be in bash, Makefile, npm scri
 <!-- In a way we're duplicating the work between docker-compose.yamls and kubernetes manifests -->
 <!-- Running a local kubernetes requires a good familiarity with kubernetes, or some extra scripting to keep things simple -->
 <!-- Kubernetes with helm has the advantage of package manager like feature of conveniently installing someone else's app (??? but the tradeoff is any volumes and values you need to supply to get it to run) -->
+<!-- Need to find a way to safeguard against accidentally applying to the wrong cluster. Possibly by using a namespace that wouldn't exist in other clusters -->
 
 ## Final Thoughts
+
+## TL;DR
