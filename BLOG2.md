@@ -2,17 +2,20 @@
 
 Usually I incorporate Docker Compose into my local development workflow: Bringing up supporting containers needed to run databases, reverse proxies, other applications, or just to see how the container I'm developing works. Given that [Docker Desktop](https://www.docker.com/products/docker-desktop) comes with a [single node] Kubernetes (K8s) cluster and I usually end up deploying my containers to a Kubernetes cluster, I thought it would be good to figure out if I can switch from Docker-Compose to Kubernetes for local development. On top of that it's a good place to work the kinks out of my Kubernetes manifests or Helm charts without disrupting any shared environments.
 
-To validate this I need to know how I'm going to handle the following:
+To validate this I need to know how I'm going to handle the following: <!-- TODO: better way to say this? Make this linkable -->
 * Building an image locally and running it on the K8s cluster.
 * Making changes to an image and running that newly updated image in K8s.
 * Running applications on K8s that require persistent data (volume mounts).
 * Running applications on K8s that can communicate with applications running on the host OS.
 * Have a app on the host OS that can communicate with images running on K8s.
 
+If you want to skip to how all of this works out here's the [TL;DR](#tldr)
+
+<!-- TODO: take this part out and make it part of the README instead? Same with the diagram -->
 I'm going to setup the following applications to validate all of this:
 1. An API Server that keeps count of the number of requests. The count will be saved into a file so this is where we can get a handle on the persistence. This will also let us try out communication from a process on the host OS to an app running on local K8s. Finally this is where we can experiment with making updates to an image and redeploying. Let's call it the Request Count Server.
-1. A Webapp that makes a call to the Request Count Server and displays the results. This will be the app will be a host-os process, so we can try out making a call from an app on the host OS to an app on K8s (the Request Count Server). We're going to with a Single Page Application (SPA) that is also Server Side Rendered (SSR) so we have a reason to throw in a ...
-1. Reverse Proxy. This will run on kubernetes and direct some http requests to the Webapp and some http requests to the Request Count Server. This should showcase an app running in k8s able to communicate with an app running on the host OS as well as typically inter-cluster communication we expect from k8s.
+2. A Webapp that makes a call to the Request Count Server and displays the results. This will be the app will be a host-os process, so we can try out making a call from an app on the host OS to an app on K8s (the Request Count Server). We're going to with a Single Page Application (SPA) that is also Server Side Rendered (SSR) so we have a reason to throw in a ...
+3. Reverse Proxy. This will run on kubernetes and direct some http requests to the Webapp and some http requests to the Request Count Server. This should showcase an app running in k8s able to communicate with an app running on the host OS as well as typically inter-cluster communication we expect from k8s.
 
 So we should see the flow of information like this:
 
@@ -20,7 +23,7 @@ So we should see the flow of information like this:
 Browser --> Reverse Proxy (K8s) --> Webapp (Host OS)
                          \--> Request Count Server (K8s)
 
-You can find the application, along with the drafts of this blog, [here](https://github.com/PaulDMooney/Local-K8s-Dev-Blog/) along with an explanation of the setup
+You can find the application, along with the drafts of this blog, [here](https://github.com/PaulDMooney/Local-K8s-Dev-Blog/) along with an explanation of the setup.
 
 ## Building and running an image locally
 
@@ -48,8 +51,6 @@ The solution is to delete the pod and recreate it. If you are running single unm
 
 * Delete a pod: `kubectl delete pod my-pod-xyz --force`
 * Scale down `kubectl scale deployment my-deployment --replicas=0` and then backup `kubectl scale deployment my-deployment --replicas=3`
-
-<!-- Mention how docker-compose is a one step process, whereas with Kubernetes this is a multi-step process or save for later section? -->
 
 ## Volumes
 
@@ -142,10 +143,10 @@ Working with kubernetes, and then layering in extra tools like Helm, there are a
 * Build and Install your app on the kubernetes cluster: 
 ```
 docker build --tag myimage:local \
-&& kubectl apply -f my-volume \
+&& kubectl apply -f my-volume.yaml \
 && my-helm install my-app ./my-app -f values-local.yaml
 ```
- <!-- TODO verify kubectl apply for pv -->
+
 * Build and restart your app: 
 ```
 docker build --tag myimage:local \
@@ -171,13 +172,30 @@ helm uninstall my-app \
 It can be up to you how to script this whether it be in bash, Makefile, npm scripts, Gradle tasks. Whatever suits your team best.
 
 ## Comparing to Docker Compose
-<!-- convenience of docker-compose for volumes, building, and running -->
-<!-- docker-compose isn't as accurate to production -->
-<!-- In a way we're duplicating the work between docker-compose.yamls and kubernetes manifests -->
-<!-- Running a local kubernetes requires a good familiarity with kubernetes, or some extra scripting to keep things simple -->
-<!-- Kubernetes with helm has the advantage of package manager like feature of conveniently installing someone else's app (??? but the tradeoff is any volumes and values you need to supply to get it to run) -->
-<!-- Need to find a way to safeguard against accidentally applying to the wrong cluster. Possibly by using a namespace that wouldn't exist in other clusters -->
+
+Using Docker Compose for local development is undoubtedly more convenient. For the most part you only need to be familiar two commands to build, run, re-build and r-run, and shutdown your applications in docker (`docker-compose up --build`, and `docker-compose down`). For volumes Docker Compose lets you mount a directory relative to where you execute `docker-compose` from and in a way that works across platforms. Docker Compose is also safer, there's no chance you're going to accidentally `docker-compose up` a mid-developed container into production!
+
+Docker Compose does have the disadvantage that it's a duplication of effort to recreate an analogue of your Kubernetes manifests into docker-compose files. But with the extra configurations, volume definitions, and scripting that needs to be added for local Kubernets development this is probably a negligable difference.
+
+Kubernetes on the other hand more accurately represents what you will be deploying into shared Kubernetes clusters or production. Using a tool like Helm gives us package manager like features of installing externally developed manifest or dependencies without having to redefine them in your local repository. 
+
+However using Kubernetes requires a good familiarity with Kubernetes and its surrounding tools or extra scripting to hide these details. These tools like `kubectl` and `helm` rely on a [context](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-context-and-configuration) which may be set to the wrong Kubernetes cluster and that will cause unwanted trouble! I recommend putting safeguards in place like setting up [RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) where possible in the shared or production Kubernetes clusters where possible. Or just simply working within a [namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) locally that does not exist in other clusters.
 
 ## Final Thoughts
 
+<!-- TODO: Make reference to the 5 criteria established earlier -->
+It's possible to replace Docker Compose with Kubernetes for local development, but for the added complexity and trade-offs it may be worth using both. For most local development, Docker Compose is probably good enough, and much simpler. Using a local Kubernetes cluster is a step up in terms of complexity and effort. It may be best suited for Helm Chart / Manifest development or situations where you absolutely must re-create [a part of] your deployment architecture.
+
 ## TL;DR
+
+Building and running an image on Kubernetes works because Kubernetes will pull from the same shared image cache you built from, just make sure your pull policy is not 'Always'.
+
+To re-build an image and re-run, just delete the old pods running the old image. Newly created pods will come up with the new image.
+
+Docker Deskop's file sharing locations can be found and configured in the Preferences/Settings, a Persistent Volume can be created with a hostPath to one of those locations.
+
+Applications running on Kubernetes can access applications on the host OS via the `host.docker.internal` DNS name.
+
+Applications running on Kubernetes can be accessed by setting up [kubectl port forwarding](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/#forward-a-local-port-to-a-port-on-the-pod) and then accessed using `localhost:{forwardedPort}`. Or, even better, make the Application's service a nodePort service and access using `localhost:{nodePort}`.
+
+Use Helm. Simplify the common tasks via scripting. Maybe don't ditch Docker Compose completely.
