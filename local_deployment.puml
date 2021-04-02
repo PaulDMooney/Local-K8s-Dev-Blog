@@ -1,0 +1,36 @@
+@startuml C4_Elements
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!include DEVICONS/angular.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(personAlias, "User")
+
+System_Boundary(kubernetes, "Kubernetes") {
+    Container(requestCountServer, "Request Count Server","NodeJS","REST API serves count of requests")
+    Container(nginxProxy, "Nginx Proxy", "Nginx", "Reverse Proxies Webapp and API")
+}
+System_Boundary(hostOS, "Host OS") {
+    Container(webappSSR, "WebApp", "Angular SPA with SSR", "Running server side", "angular")
+    ContainerDb(countVolume, "countVolume", "Shared Folder", "Stores count data")
+}
+System_Boundary(browser, "Browser") {
+    Container(webappBrowser, "Webapp", "Angular SPA", "Running browser side","angular")
+}
+
+
+Rel(webappSSR, requestCountServer, "Calls", "http")
+Rel_R(requestCountServer, countVolume, "Reads/Writes")
+' Rel(personAlias, containerAlias, "Label", "Optional Technology")
+Rel(nginxProxy, requestCountServer, "Proxies for /request-count", "http")
+Rel(nginxProxy, webappSSR, "Proxies for /", "http")
+Rel(webappBrowser, nginxProxy, "Requests /*", "http")
+Rel(personAlias, webappBrowser, "Uses")
+
+' Some relative positioning
+' browser -[hidden]-> hostOS
+kubernetes -[hidden]> browser
+webappSSR -[hidden]-> countVolume
+
+@enduml
