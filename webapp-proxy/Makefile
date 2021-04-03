@@ -1,7 +1,6 @@
 BASEDIR = $(shell pwd)
 
 build:
-	-npm ci
 	-docker build --tag webapp-proxy:local .
 
 install:
@@ -16,5 +15,3 @@ upgrade:
 restart:
 	-kubectl scale deployment webapp-proxy --replicas=0 -n test-app
 	-kubectl scale deployment webapp-proxy --replicas=1 -n test-app
-
-build.restart: build restart

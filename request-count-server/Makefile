@@ -18,5 +18,3 @@ upgrade:
 restart:
 	-kubectl scale deployment request-count-server --replicas=0 -n test-app
 	-kubectl scale deployment request-count-server --replicas=1 -n test-app
-
-build.restart: build restart

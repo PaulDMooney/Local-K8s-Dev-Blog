@@ -13,7 +13,7 @@ Person(personAlias, "User")
 
 System_Boundary(kubernetes, "Kubernetes") {
     Container(requestCountServer, "Request Count Server","NodeJS/Express","REST API serves count of requests","nodejs_small")
-    Container(nginxProxy, "Nginx Proxy", "Nginx", "Reverse Proxies Webapp and API", "nginx")
+    Container(webappProxy, "WebApp Proxy", "Nginx", "Reverse Proxies WebApp and API", "nginx")
 }
 System_Boundary(hostOS, "Host OS") {
     Container(webappSSR, "WebApp", "Angular SPA with SSR", "Running server side", "angular")
@@ -27,9 +27,9 @@ System_Boundary(browser, "Browser") {
 Rel(webappSSR, requestCountServer, "Calls", "http")
 Rel_R(requestCountServer, countVolume, "Reads/Writes")
 ' Rel(personAlias, containerAlias, "Label", "Optional Technology")
-Rel(nginxProxy, requestCountServer, "Proxies /request-count", "http")
-Rel(nginxProxy, webappSSR, "Proxies /*", "http")
-Rel(webappBrowser, nginxProxy, "Requests /*", "http")
+Rel(webappProxy, requestCountServer, "Proxies /request-count", "http")
+Rel(webappProxy, webappSSR, "Proxies /*", "http")
+Rel(webappBrowser, webappProxy, "Requests /*", "http")
 Rel(personAlias, webappBrowser, "Uses")
 
 ' Some relative positioning
