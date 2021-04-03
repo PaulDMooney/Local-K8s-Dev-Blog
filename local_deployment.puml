@@ -1,19 +1,23 @@
 @startuml C4_Elements
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 !define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome
 !include DEVICONS/angular.puml
+!include DEVICONS/nginx.puml
+!include DEVICONS/nodejs_small.puml
+!include FONTAWESOME/folder_open.puml
 
 LAYOUT_WITH_LEGEND()
 
 Person(personAlias, "User")
 
 System_Boundary(kubernetes, "Kubernetes") {
-    Container(requestCountServer, "Request Count Server","NodeJS","REST API serves count of requests")
-    Container(nginxProxy, "Nginx Proxy", "Nginx", "Reverse Proxies Webapp and API")
+    Container(requestCountServer, "Request Count Server","NodeJS/Express","REST API serves count of requests","nodejs_small")
+    Container(nginxProxy, "Nginx Proxy", "Nginx", "Reverse Proxies Webapp and API", "nginx")
 }
 System_Boundary(hostOS, "Host OS") {
     Container(webappSSR, "WebApp", "Angular SPA with SSR", "Running server side", "angular")
-    ContainerDb(countVolume, "countVolume", "Shared Folder", "Stores count data")
+    ContainerDb(countVolume, "CountVolume", "Shared Folder", "Stores count data", "folder_open")
 }
 System_Boundary(browser, "Browser") {
     Container(webappBrowser, "Webapp", "Angular SPA", "Running browser side","angular")
