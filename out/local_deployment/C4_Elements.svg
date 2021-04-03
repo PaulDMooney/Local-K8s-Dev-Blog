@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1010px" preserveAspectRatio="none" style="width:537px;height:1010px;" version="1.1" viewBox="0 0 537 1010" width="537px" zoomAndPan="magnify"><defs/><g><!--MD5=[7f20f5e6db92331548384b48a87a155d]
+cluster kubernetes--><rect fill="#FFFFFF" height="393" style="stroke:#444444;stroke-width:1.0;stroke-dasharray:7.0,7.0;" width="263" x="12" y="459"/><text fill="#444444" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="93" x="97" y="476.4688">Kubernetes</text><text fill="#444444" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="48" x="119.5" y="491.4453">[System]</text><!--MD5=[86bf710e8895f755ed7045390e161e11]
+cluster hostOS--><rect fill="#FFFFFF" height="389.5" style="stroke:#444444;stroke-width:1.0;stroke-dasharray:7.0,7.0;" width="192" x="339" y="451"/><text fill="#444444" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="64" x="403" y="468.4688">Host OS</text><text fill="#444444" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="48" x="411" y="483.4453">[System]</text><!--MD5=[2de28e47f9582cb6df153deeec479525]
+cluster browser--><rect fill="#FFFFFF" height="217" style="stroke:#444444;stroke-width:1.0;stroke-dasharray:7.0,7.0;" width="241" x="12" y="164"/><text fill="#444444" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="66" x="99.5" y="181.4688">Browser</text><text fill="#444444" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="48" x="108.5" y="196.4453">[System]</text><!--MD5=[4cb1ae5befae99fc2da2450c477923e1]
+entity requestCountServer--><rect fill="#438DD5" height="102.4414" style="stroke:#3C7FC0;stroke-width:1.5;" width="196" x="55" y="726"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="175" x="65.5" y="751.4688">Request Count Server</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="49" x="128.5" y="766.4453">[NodeJS]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="155" y="782.5117"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="168" x="69" y="799">REST API serves count of</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="59" x="123.5" y="815.4883">requests</text><!--MD5=[268befeb18c3b51e7ab96a74191babc9]
+entity nginxProxy--><rect fill="#438DD5" height="102.4414" style="stroke:#3C7FC0;stroke-width:1.5;" width="195" x="55.5" y="518"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="98" x="104" y="543.4688">Nginx Proxy</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="41" x="132.5" y="558.4453">[Nginx]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="155" y="574.5117"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="167" x="69.5" y="591">Reverse Proxies Webapp</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="52" x="127" y="607.4883">and API</text><!--MD5=[2aee077a76ee34dd70bd55df8c95137c]
+entity webappSSR--><rect fill="#438DD5" height="133.9531" style="stroke:#3C7FC0;stroke-width:1.5;" width="160" x="355" y="502"/><image height="48" width="48" x="411" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAACnUlEQVR4Xu1XTWpWQRDM3eYAXiAH8AIewAPoypW4c+HCZXauxJ3gxoVIBCEggUBAUSEhIDyLr6HpdE/VzHvfB7r4ilqE9+b11Nc/NZOT9uTTf8WT+ujf8ihoxKOgEQ8g6MGzz0/fXD4++1ZfbeBegh69vnh7/nMJ+HDxe09lWwQ9fPn17OP3qKNis7IVgkzHr9s/efNl6T5cds/xCRJZozGOBZ2++PLq/fXlj7u8W8Dzd1epdglQhgUzyqgga9Xzq5scuwcshu78tAfLGZJdd1SC0AE5Egfyt+ErpLzuSwXpAiUgN/YVfnd+x7FO0PxvRWfEDydLvOzGsO7bmKDhVDtSN6Bt8woCbFH3bUwQpiYH6AH5qN9Olhtb1G8bEwRPywF68DHGH54qzGZe1wOzzb6gmfaMXYmGiM3EfDKCTX5fEHwlByhAJmyxO5CP20zFsUXdtzFBYA5wH8iBr4QP2cPYp8Mk1R2NVJCO6GaYVnqSXGUXzISaEKQdxROeWtiTpIvOTKgJQeKwjKWpQ+5ahZkxE2pCkMi516XtDCLR34rjNlY8kQpidiKyXcnS7BNaSQWxQ2DmTuNkSRJBqKBurDgdqA4yz+jLuud0LHoiFdR6VhT9XvtCPFXyO25CTQtKW0YzZB3miK2WHCTGqVSCUqB4PmuXMnhd0lHdvSM4laA0I24w3faqYHaV7nSJSlC0IpQA3WBkw1yBI90YQwkTalrQsFG2QZhQ04Lwy/QobQACiplvWlDbnZHiDFkLXSzjQJARssRJOQN8zm5kiVOCjKjgzLQnYBp0jRJXCDJiyuqVowuoZxdnwdWCjPA60e94xf6pGHKjIGO9zEMK+4drknsJavf7fb5zBfcVZETbrupcwcMIOiCPgkY8ChrxL89rtiXB517ZAAAAAElFTkSuQmCC" y="512"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="68" x="401" y="575.4688">WebApp</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="128" x="371" y="590.4453">[Angular SPA with SSR]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="437" y="606.5117"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="136" x="369" y="623">Running server side</text><!--MD5=[a16a2bbca378d426acac7842e3acf3fb]
+entity countVolume--><path d="M371,739.5 C371,729.5 443,729.5 443,729.5 C443,729.5 515,729.5 515,739.5 L515,814.4531 C515,824.4531 443,824.4531 443,824.4531 C443,824.4531 371,824.4531 371,814.4531 L371,739.5 " fill="#438DD5" style="stroke:#3C7FC0;stroke-width:1.5;"/><path d="M371,739.5 C371,749.5 443,749.5 443,749.5 C443,749.5 515,749.5 515,739.5 " fill="none" style="stroke:#3C7FC0;stroke-width:1.5;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="109" x="388.5" y="768.9688">countVolume</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="88" x="399" y="783.9453">[Shared Folder]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="445" y="800.0117"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="120" x="385" y="816.5">Stores count data</text><!--MD5=[7a8d05c414786285e59c01090266b06c]
+entity webappBrowser--><rect fill="#438DD5" height="133.9531" style="stroke:#3C7FC0;stroke-width:1.5;" width="174" x="55" y="223"/><image height="48" width="48" x="118" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAACnUlEQVR4Xu1XTWpWQRDM3eYAXiAH8AIewAPoypW4c+HCZXauxJ3gxoVIBCEggUBAUSEhIDyLr6HpdE/VzHvfB7r4ilqE9+b11Nc/NZOT9uTTf8WT+ujf8ihoxKOgEQ8g6MGzz0/fXD4++1ZfbeBegh69vnh7/nMJ+HDxe09lWwQ9fPn17OP3qKNis7IVgkzHr9s/efNl6T5cds/xCRJZozGOBZ2++PLq/fXlj7u8W8Dzd1epdglQhgUzyqgga9Xzq5scuwcshu78tAfLGZJdd1SC0AE5Egfyt+ErpLzuSwXpAiUgN/YVfnd+x7FO0PxvRWfEDydLvOzGsO7bmKDhVDtSN6Bt8woCbFH3bUwQpiYH6AH5qN9Olhtb1G8bEwRPywF68DHGH54qzGZe1wOzzb6gmfaMXYmGiM3EfDKCTX5fEHwlByhAJmyxO5CP20zFsUXdtzFBYA5wH8iBr4QP2cPYp8Mk1R2NVJCO6GaYVnqSXGUXzISaEKQdxROeWtiTpIvOTKgJQeKwjKWpQ+5ahZkxE2pCkMi516XtDCLR34rjNlY8kQpidiKyXcnS7BNaSQWxQ2DmTuNkSRJBqKBurDgdqA4yz+jLuud0LHoiFdR6VhT9XvtCPFXyO25CTQtKW0YzZB3miK2WHCTGqVSCUqB4PmuXMnhd0lHdvSM4laA0I24w3faqYHaV7nSJSlC0IpQA3WBkw1yBI90YQwkTalrQsFG2QZhQ04Lwy/QobQACiplvWlDbnZHiDFkLXSzjQJARssRJOQN8zm5kiVOCjKjgzLQnYBp0jRJXCDJiyuqVowuoZxdnwdWCjPA60e94xf6pGHKjIGO9zEMK+4drknsJavf7fb5zBfcVZETbrupcwcMIOiCPgkY8ChrxL89rtiXB517ZAAAAAElFTkSuQmCC" y="233"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="65" x="109.5" y="296.4688">Webapp</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="77" x="103.5" y="311.4453">[Angular SPA]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="144" y="327.5117"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="150" x="69" y="344">Running browser side</text><!--MD5=[b0dcb10635bb063d35b19b99258b98bc]
+entity personAlias--><rect fill="#08427B" height="86.8438" style="stroke:#073B6F;stroke-width:1.5;" width="68" x="108" y="7"/><image height="48" width="48" x="118" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAACD0lEQVR4Xu2YoU4EMRCGT+4j8Ai8AhaH4QHgAUjQuFMECUgMIUgwJAgMhgQsAYUiJCiQIBBY+EITsjfTdme6V24v4c8vyGbb+ZjOtN0bNcvjQXmkH83WvYBWto6PLm6v7p7uH1/w2fXD+PBycX1Pv2l3IdDm/vn7x+dXQiAubRzoURa7gRZWd0iGRIiJbOnhnfYBQZNJjNbuyY2eJG8fkDE3bbG4ep6MHUAsgYxmE3nVs6VsBWJSGccsOlFPmLIViMzLOB7pCVO2AtHJMohH7Fh6zqitQK7m0rJvAVYgGcEpe//PLdDz65sM4pF9N7ICcXDKIB5Nv6j7tD0NoSdM2QrU9Gg0ewE1LqBhHR3BBdvj2vapnidjHxD/q6vd7Pvhr31AwcY8eXMTXAKECZZJFXuEq27aLgQK5uLMohCenGGuGewOxSjBvYBqeG6B+Nqiblggdjnc+ZXDy+FNFpFzw76O3UBAROuXh6FoiAcf5g9eTvUgzy0nWg6I8cXHRUpg5bOVBCo+KDpFajOf23GgPme7RSQ+lacIENUgJ6gg1k6HjgOlqnLqip4tEuhv0hNEMXUD0clyXE3p6pZA0S2nnvTlXwLJEZWlb7cTQH1+USgTN4VhAenm/wea1OCAOmqo6fE1WCb9WSKBah+rbUWPWAmE2Rvk0ApiB45eOyNAzU8xcTvj8KvkKEoOaIYeHNA3ZuygAvFMUO0AAAAASUVORK5CYII=" y="17"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="37" x="123.5" y="80.4688">User</text><!--MD5=[927753fba1e982550ca29436de68da9a]
+link webappSSR to requestCountServer--><path d="M373.21,636.29 C352.33,656.77 328.16,678.51 304,696 C289.83,706.26 274.17,716.04 258.47,725.01 " fill="none" id="webappSSR-to-requestCountServer" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="251.26,729.07,259.7024,727.7561,256.7567,722.5289,251.26,729.07" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="31" x="339" y="678.6016">Calls</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="31" x="339" y="692.7344">[http]</text><!--MD5=[f8ff8a988c385f4d463dcbd0c39ef00a]
+link requestCountServer to countVolume--><path d="M251.18,777 C287.39,777 327.95,777 362.42,777 " fill="none" id="requestCountServer-to-countVolume" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="370.59,777,362.59,774,362.59,780,370.59,777" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="83" x="269.5" y="770.6016">Reads/Writes</text><!--MD5=[8e528cbb5d0cc21a0327ba4922b4a48c]
+link nginxProxy to requestCountServer--><path d="M152.27,620.28 C152.03,643.35 151.84,671.06 152,696 C152.04,702.89 152.11,710.11 152.18,717.28 " fill="none" id="nginxProxy-to-requestCountServer" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="152.27,725.64,155.1698,717.6031,149.1702,717.6781,152.27,725.64" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="146" x="153" y="678.6016">Proxies /request-count</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="31" x="210.5" y="692.7344">[http]</text><!--MD5=[f26d82b5779d20521edf30759f6e4402]
+link nginxProxy to webappSSR--><path d="M250.84,569 C281.94,569 316.15,569 346.55,569 " fill="none" id="nginxProxy-to-webappSSR" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="354.6,569,346.6,566,346.6,572,354.6,569" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="56" x="271.75" y="548.6016">Proxies /</text><text fill="#666666" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="6" x="327.75" y="548.6016">*</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="31" x="287.25" y="562.7344">[http]</text><!--MD5=[e1bff40749f78f37400b261b3ae193df]
+link webappBrowser to nginxProxy--><path d="M144.63,357.35 C146.48,403.76 148.92,465.16 150.68,509.69 " fill="none" id="webappBrowser-to-nginxProxy" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="151.01,517.8,153.6936,509.6884,147.6983,509.9239,151.01,517.8" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="68" x="148" y="417.6016">Requests /</text><text fill="#666666" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="6" x="216" y="417.6016">*</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="31" x="169.5" y="431.7344">[http]</text><!--MD5=[fb8de93c1b1d6817bef95e8e0de4923e]
+link personAlias to webappBrowser--><path d="M142,94.23 C142,127.65 142,174.92 142,214.52 " fill="none" id="personAlias-to-webappBrowser" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="142,222.85,145,214.85,139,214.85,142,222.85" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="30" x="143" y="136.6016">Uses</text><!--MD5=[6fa7e637676601be3899fa56806cea0c]
+link kubernetes to browser--><!--MD5=[1017c63578a7310c8be21be0f2a6fbea]
+link webappSSR to countVolume--><rect fill="#FFFFFF" height="129.418" rx="5" ry="5" style="stroke:#FFFFFF;stroke-width:1.0;" width="146" x="369" y="865"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="51" x="375" y="885.5352">Legend</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="430" y="885.5352"/><rect fill="#08427B" height="16.4883" style="stroke:none;stroke-width:1.0;" width="134" x="375" y="888.4883"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="48" x="379" y="902.0234">person</text><rect fill="#1168BD" height="16.4883" style="stroke:none;stroke-width:1.0;" width="134" x="375" y="904.9766"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="47" x="379" y="918.5117">system</text><rect fill="#438DD5" height="16.4883" style="stroke:none;stroke-width:1.0;" width="134" x="375" y="921.4648"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="65" x="379" y="935">container</text><rect fill="#686868" height="16.4883" style="stroke:none;stroke-width:1.0;" width="134" x="375" y="937.9531"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="109" x="379" y="951.4883">external person</text><rect fill="#999999" height="16.4883" style="stroke:none;stroke-width:1.0;" width="134" x="375" y="954.4414"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="108" x="379" y="967.9766">external system</text><rect fill="#B3B3B3" height="16.4883" style="stroke:none;stroke-width:1.0;" width="134" x="375" y="970.9297"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="126" x="379" y="984.4648">external container</text><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="375" x2="509" y1="872" y2="872"/><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="375" x2="509" y1="888.4883" y2="888.4883"/><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="375" x2="509" y1="904.9766" y2="904.9766"/><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="375" x2="509" y1="921.4648" y2="921.4648"/><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="375" x2="509" y1="937.9531" y2="937.9531"/><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="375" x2="509" y1="954.4414" y2="954.4414"/><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="375" x2="509" y1="970.9297" y2="970.9297"/><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="375" x2="509" y1="987.418" y2="987.418"/><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="375" x2="375" y1="872" y2="987.418"/><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="509" x2="509" y1="872" y2="987.418"/><!--MD5=[81530dcbf8ec399530d8e4bbf50fd80e]
+@startuml C4_Elements
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!include DEVICONS/angular.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(personAlias, "User")
+
+System_Boundary(kubernetes, "Kubernetes") {
+    Container(requestCountServer, "Request Count Server","NodeJS","REST API serves count of requests")
+    Container(nginxProxy, "Nginx Proxy", "Nginx", "Reverse Proxies Webapp and API")
+}
+System_Boundary(hostOS, "Host OS") {
+    Container(webappSSR, "WebApp", "Angular SPA with SSR", "Running server side", "angular")
+    ContainerDb(countVolume, "countVolume", "Shared Folder", "Stores count data")
+}
+System_Boundary(browser, "Browser") {
+    Container(webappBrowser, "Webapp", "Angular SPA", "Running browser side","angular")
+}
+
+
+Rel(webappSSR, requestCountServer, "Calls", "http")
+Rel_R(requestCountServer, countVolume, "Reads/Writes")
+' Rel(personAlias, containerAlias, "Label", "Optional Technology")
+Rel(nginxProxy, requestCountServer, "Proxies /request-count", "http")
+Rel(nginxProxy, webappSSR, "Proxies /*", "http")
+Rel(webappBrowser, nginxProxy, "Requests /*", "http")
+Rel(personAlias, webappBrowser, "Uses")
+
+' Some relative positioning
+' browser -[hidden]-> hostOS
+kubernetes -[hidden]> browser
+webappSSR -[hidden]-> countVolume
+
+@enduml
+
+@startuml C4_Elements
+
+
+
+
+
+
+
+
+skinparam defaultTextAlignment center
+
+skinparam wrapWidth 200
+skinparam maxMessageSize 150
+
+skinparam LegendBorderColor transparent
+skinparam LegendBackgroundColor transparent
+skinparam LegendFontColor #FFFFFF
+
+skinparam rectangle {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam database {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam queue {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam Arrow {
+    Color #666666
+    FontColor #666666
+    FontSize 12
+}
+
+skinparam package {
+    StereotypeFontSize 6
+    StereotypeFontColor #FFFFFF
+    FontStyle plain
+    BackgroundColor #FFFFFF
+}
+
+skinparam rectangle<<boundary>> {
+    Shadowing false
+    StereotypeFontSize 6
+    StereotypeFontColor #FFFFFF
+    FontColor #444444
+    BorderColor #444444
+    BackgroundColor #FFFFFF
+    BorderStyle dashed
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam database<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam queue<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+
+skinparam rectangle<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam database<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam queue<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+
+skinparam rectangle<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam database<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam queue<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+
+skinparam rectangle<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam database<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam queue<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+
+
+
+
+sprite $person [48x48/16] {
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+0000000000000000000049BCCA7200000000000000000000
+0000000000000000006EFFFFFFFFB3000000000000000000
+00000000000000001CFFFFFFFFFFFF700000000000000000
+0000000000000001EFFFFFFFFFFFFFF80000000000000000
+000000000000000CFFFFFFFFFFFFFFFF6000000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+00000000000001FFFFFFFFFFFFFFFFFFF900000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFF00000000000000
+0000000000000BFFFFFFFFFFFFFFFFFFFF40000000000000
+0000000000000EFFFFFFFFFFFFFFFFFFFF70000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000DFFFFFFFFFFFFFFFFFFFF60000000000000
+0000000000000AFFFFFFFFFFFFFFFFFFFF40000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFE00000000000000
+00000000000000EFFFFFFFFFFFFFFFFFF800000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+000000000000000BFFFFFFFFFFFFFFFF5000000000000000
+0000000000000001DFFFFFFFFFFFFFF70000000000000000
+00000000000000000BFFFFFFFFFFFF500000000000000000
+0000000000000000005DFFFFFFFFA1000000000000000000
+0000000000000000000037ABB96100000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000025788300000000005886410000000000000
+000000000007DFFFFFFD9643347BFFFFFFFB400000000000
+0000000004EFFFFFFFFFFFFFFFFFFFFFFFFFFB1000000000
+000000007FFFFFFFFFFFFFFFFFFFFFFFFFFFFFD200000000
+00000006FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE10000000
+0000003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB0000000
+000000BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5000000
+000003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD000000
+000009FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF200000
+00000DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF600000
+00000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF800000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA00000
+00000EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF700000
+000006FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE100000
+0000008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD3000000
+000000014555555555555555555555555555555300000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+}
+
+sprite $person2 [48x48/16] {
+0000000000000000000049BCCA7200000000000000000000
+0000000000000000006EFFFFFFFFB3000000000000000000
+00000000000000001CFFFFFFFFFFFF700000000000000000
+0000000000000001EFFFFFFFFFFFFFF80000000000000000
+000000000000000CFFFFFFFFFFFFFFFF6000000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+00000000000001FFFFFFFFFFFFFFFFFFF900000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFF00000000000000
+0000000000000BFFFFFFFFFFFFFFFFFFFF40000000000000
+0000000000000EFFFFFFFFFFFFFFFFFFFF70000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000DFFFFFFFFFFFFFFFFFFFF60000000000000
+0000000000000AFFFFFFFFFFFFFFFFFFFF40000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFE00000000000000
+00000000000000EFFFFFFFFFFFFFFFFFF800000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+000000000000000BFFFFFFFFFFFFFFFF5000000000000000
+0000000000000001DFFFFFFFFFFFFFF70000000000000000
+00000000000000000BFFFFFFFFFFFF500000000000000000
+0000000000000000005DFFFFFFFFA1000000000000000000
+0000000000000000000037ABB96100000000000000000000
+000000000002578888300000000005888864100000000000
+0000000007DFFFFFFFFD9643347BFFFFFFFFFB4000000000
+00000004EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB10000000
+0000007FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD2000000
+000006FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE100000
+00003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+0000BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF50000
+0003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD0000
+0009FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF2000
+000DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6000
+000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA000
+000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+000DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6000
+0009FFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFFF2000
+0003FFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFFD0000
+0000BFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFF50000
+00003FFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFB00000
+000006FFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFE100000
+0000007FFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFD2000000
+00000004EFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFB10000000
+0000000007DF8FFFFFFFFFFFFFFFFFFFFFF8FB4000000000
+000000000002578888888888888888888864100000000000
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam database<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam queue<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+
+skinparam rectangle<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam database<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam queue<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sprite $angular [48x48/16] {
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000016500000000000000000000000
+000000000000000000004AFFFFB500000000000000000000
+0000000000000000039FFFFFFFFFFB500000000000000000
+0000000000000039EFFFFFFEFFFFFFFE9400000000000000
+0000000000028DFFFFFFFFF7AFFFFFFFFFEA400000000000
+0000000016CFFFFFFFFFFFF12FFFFFFFFFFFFE9300000000
+0000000BFFFFFFFFFFFFFF800BFFFFFFFFFFFFFFD0000000
+0000000DFFFFFFFFFFFFFF2003FFFFFFFFFFFFFFD0000000
+0000000BFFFFFFFFFFFFFA0000CFFFFFFFFFFFFFB0000000
+00000009FFFFFFFFFFFFF300004FFFFFFFFFFFFF90000000
+00000007FFFFFFFFFFFFC000000DFFFFFFFFFFFF70000000
+00000005FFFFFFFFFFFF40043006FFFFFFFFFFFF50000000
+00000003FFFFFFFFFFFD000BA000EFFFFFFFFFFF30000000
+00000001FFFFFFFFFFF6002FF2007FFFFFFFFFFF10000000
+00000000FFFFFFFFFFE0008FF9000EFFFFFFFFFF00000000
+00000000EFFFFFFFFF8000EFFF2008FFFFFFFFFD00000000
+00000000CFFFFFFFFF1006FFFF9001FFFFFFFFFB00000000
+00000000AFFFFFFFF9000DFFFFF1009FFFFFFFF900000000
+000000008FFFFFFFF20005555552002FFFFFFFF800000000
+000000006FFFFFFFB00000000000000AFFFFFFF600000000
+000000004FFFFFFF4000000000000002FFFFFFF400000000
+000000002FFFFFFD0005888888888000BFFFFFF200000000
+000000000FFFFFF5000EFFFFFFFFF4004FFFFFF000000000
+000000000EFFFFE0006FFFFFFFFFFB000CFFFFE000000000
+000000000CFFFF7000CFFFFFFFFFFF2005FFFFC000000000
+000000000AFFFF1002FFFFFFFFFFFF9000DFFFA000000000
+0000000008FFFB444AFFFFFFFFFFFFF3338FFF8000000000
+0000000006FFFFFFFFFFFFFFFFFFFFFFFFFFFF6000000000
+0000000003EFFFFFFFFFFFFFFFFFFFFFFFFFFE2000000000
+000000000018FFFFFFFFFFFFFFFFFFFFFFFF800000000000
+00000000000019FFFFFFFFFFFFFFFFFFFF91000000000000
+000000000000003CFFFFFFFFFFFFFFFFB200000000000000
+00000000000000004DFFFFFFFFFFFFC30000000000000000
+0000000000000000005EFFFFFFFFE5000000000000000000
+000000000000000000007FFFFFE700000000000000000000
+00000000000000000000019FF91000000000000000000000
+000000000000000000000002200000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+}
+
+
+skinparam folderBackgroundColor<<DEV ANGULAR>> White
+
+hide stereotype
+legend right
+|<color:#000000>**Legend**</color> |
+|<#08427B> person |
+|<#1168BD> system |
+|<#438DD5> container |
+|<#686868> external person |
+|<#999999> external system |
+|<#B3B3B3> external container |
+endlegend
+
+rectangle "<$person>\n==User" <<person>> as personAlias
+
+rectangle "==Kubernetes\n<size:12>[System]</size>" <<boundary>> as kubernetes {
+    rectangle "==Request Count Server\n//<size:12>[NodeJS]</size>//\n\n REST API serves count of requests" <<container>> as requestCountServer
+    rectangle "==Nginx Proxy\n//<size:12>[Nginx]</size>//\n\n Reverse Proxies Webapp and API" <<container>> as nginxProxy
+}
+rectangle "==Host OS\n<size:12>[System]</size>" <<boundary>> as hostOS {
+    rectangle "<$angular>\n==WebApp\n//<size:12>[Angular SPA with SSR]</size>//\n\n Running server side" <<container>> as webappSSR
+    database "==countVolume\n//<size:12>[Shared Folder]</size>//\n\n Stores count data" <<container>> as countVolume
+}
+rectangle "==Browser\n<size:12>[System]</size>" <<boundary>> as browser {
+    rectangle "<$angular>\n==Webapp\n//<size:12>[Angular SPA]</size>//\n\n Running browser side" <<container>> as webappBrowser
+}
+
+
+webappSSR - ->> requestCountServer : **Calls**\n//<size:12>[http]</size>//
+requestCountServer -RIGHT->> countVolume : **Reads/Writes**
+nginxProxy - ->> requestCountServer : **Proxies /request-count**\n//<size:12>[http]</size>//
+nginxProxy - ->> webappSSR : **Proxies /***\n//<size:12>[http]</size>//
+webappBrowser - ->> nginxProxy : **Requests /***\n//<size:12>[http]</size>//
+personAlias - ->> webappBrowser : **Uses**
+
+kubernetes -[hidden]> browser
+webappSSR -[hidden]-> countVolume
+
+@enduml
+
+PlantUML version 1.2021.00(Sun Jan 10 05:25:05 EST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: CA
+--></g></svg>

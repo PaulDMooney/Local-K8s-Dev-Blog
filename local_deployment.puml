@@ -23,8 +23,8 @@ System_Boundary(browser, "Browser") {
 Rel(webappSSR, requestCountServer, "Calls", "http")
 Rel_R(requestCountServer, countVolume, "Reads/Writes")
 ' Rel(personAlias, containerAlias, "Label", "Optional Technology")
-Rel(nginxProxy, requestCountServer, "Proxies for /request-count", "http")
-Rel(nginxProxy, webappSSR, "Proxies for /", "http")
+Rel(nginxProxy, requestCountServer, "Proxies /request-count", "http")
+Rel(nginxProxy, webappSSR, "Proxies /*", "http")
 Rel(webappBrowser, nginxProxy, "Requests /*", "http")
 Rel(personAlias, webappBrowser, "Uses")
 
