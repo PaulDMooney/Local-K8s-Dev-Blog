@@ -29,8 +29,8 @@ Rel(webappBrowser, nginxProxy, "Requests /*", "http")
 Rel(personAlias, webappBrowser, "Uses")
 
 ' Some relative positioning
-' browser -[hidden]-> hostOS
-kubernetes -[hidden]> browser
+browser -[hidden]up-> kubernetes
+' kubernetes -down-> browser
 webappSSR -[hidden]-> countVolume
 
 @enduml
