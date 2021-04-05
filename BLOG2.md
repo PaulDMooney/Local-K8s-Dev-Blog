@@ -1,31 +1,19 @@
 # Ditching Docker-Compose for Kubernetes?
 
-Usually I incorporate Docker Compose into my local development workflow: Bringing up supporting containers needed to run databases, reverse proxies, other applications, or just to see how the container I'm developing works. Given that [Docker Desktop](https://www.docker.com/products/docker-desktop) comes with a [single node] Kubernetes (K8s) cluster and I usually end up deploying my containers to a Kubernetes cluster, I thought it would be good to figure out if I can switch from Docker-Compose to Kubernetes for local development. On top of that it's a good place to work the kinks out of my Kubernetes manifests or Helm charts without disrupting any shared environments.
+Usually I incorporate Docker Compose into my local development workflow: Bringing up supporting containers needed to run databases, reverse proxies, other applications, or just to see how the container I'm developing works. Given that [Docker Desktop](https://www.docker.com/products/docker-desktop) comes with a [single node] Kubernetes (K8s) cluster and I usually end up deploying my containers to a Kubernetes cluster, I thought it would be good to figure out if I can switch from Docker-Compose to Kubernetes for local development. On top of that it's a good place to work the kinks out of Kubernetes manifests or Helm charts without disrupting any shared environments.
 
-To validate this I need to know how I'm going to handle the following: <!-- TODO: better way to say this? Make this linkable -->
-* Building an image locally and running it on the K8s cluster.
-* Making changes to an image and running that newly updated image in K8s.
-* Running applications on K8s that require persistent data (volume mounts).
-* Running applications on K8s that can communicate with applications running on the host OS.
-* Have a app on the host OS that can communicate with images running on K8s.
+There are five things I need to be able to do in order to replace Docker-Compose with Kubernetes:
+* [Build an image locally and run it on the Kubernetes](#build-local).
+* [Make changes to an app and run its newly updated image on Kubernetes](#make-changes).
+* [Make an easily accessible volume mount on a container in Kubernetes](#volume-mount).
+* [Have Kubernetes apps easily communicate with host OS apps](#docker-internal-dns).
+* [Have host OS apps easily communicate with Kubernetes apps](#expose-app).
 
 If you want to skip to how all of this works out here's the [TL;DR](#tldr)
 
-<!-- TODO: take this part out and make it part of the README instead? Same with the diagram -->
-I'm going to setup the following applications to validate all of this:
-1. An API Server that keeps count of the number of requests. The count will be saved into a file so this is where we can get a handle on the persistence. This will also let us try out communication from a process on the host OS to an app running on local K8s. Finally this is where we can experiment with making updates to an image and redeploying. Let's call it the Request Count Server.
-2. A Webapp that makes a call to the Request Count Server and displays the results. This will be the app will be a host-os process, so we can try out making a call from an app on the host OS to an app on K8s (the Request Count Server). We're going to with a Single Page Application (SPA) that is also Server Side Rendered (SSR) so we have a reason to throw in a ...
-3. Reverse Proxy. This will run on kubernetes and direct some http requests to the Webapp and some http requests to the Request Count Server. This should showcase an app running in k8s able to communicate with an app running on the host OS as well as typically inter-cluster communication we expect from k8s.
+*You can find sample applications that demonstrate all of this in [this monorepo](https://github.com/PaulDMooney/Local-K8s-Dev-Blog/) along with an [explanation to get up and running](https://github.com/PaulDMooney/Local-K8s-Dev-Blog/blob/main/README.md#working-with-the-local-environment).*
 
-So we should see the flow of information like this:
-
-<!-- TODO: Fix diagram. Maybe use an image -->
-Browser --> Reverse Proxy (K8s) --> Webapp (Host OS)
-                         \--> Request Count Server (K8s)
-
-You can find the application, along with the drafts of this blog, [here](https://github.com/PaulDMooney/Local-K8s-Dev-Blog/) along with an explanation of the setup.
-
-## Building and running an image locally
+## <span id="build-local">Build an image locally and run it on the Kubernetes</span>
 
 With Docker Compose I can build an image and run it (assuming I have my docker-compose files setup) with just one simple command `docker-compose up --build`. What's the analogue of this with Kubernetes? When I build an image, how can Kubernetes pull it? Do I need to a local [Docker Registry](https://docs.docker.com/registry) to push my image to? 
 
@@ -43,7 +31,7 @@ containers:
 
 I think that covers how we can build and run an image locally.
 
-## Making changes to an image and re-running it in K8s
+## <span id="make-changes">Make Changes to an app and run its newly updated image on Kubernetes</span>
 
 If I were making changes to the application or its image and wanted to see it running in Docker Compose I would just run the command `docker-compose up --build` (hmm, did we do that command already?). For kubernetes we can rebuild the image `docker build --tag my-image:local` (did we cover this one too?). So that much is the same as the initial build. But you will probably notice your changes aren't actually running in kubernetes. 
 
@@ -52,7 +40,7 @@ The solution is to delete the pod and recreate it. If you are running single unm
 * Delete a pod: `kubectl delete pod my-pod-xyz --force`
 * Scale down `kubectl scale deployment my-deployment --replicas=0` and then backup `kubectl scale deployment my-deployment --replicas=3`
 
-## Volumes
+## <span id="volume-mount">Make an easily accessible volume mount on a container in Kubernetes</span>
 
 In Docker Compose volumes can be fairly straight forward in that you can mount any file or subdirectory from within the directory you are executing `docker-compose` from. That makes it easy to find, inspect and cleanup. But Kubernetes is not the same, I'm not running it from a project's folder like Docker Compose, it's already running on the Docker Desktop Virtual Machine somewhere. So if we defined a volume to mount into a container, where would the data for that volume live? It lives in the Docker Desktop Virtual Machine somewhere (unless you're running WSL 2). Luckily Docker Desktop has file sharing setup with the host OS so I can take advantage of this to do any inspection or cleanup of persistent data.
 
@@ -78,9 +66,9 @@ This volume obviously differs from what you would use in your dev or prod Kubern
 
 One last thing, this is not unique to local Kubernetes development, if you ever delete the claim to this Persistent Volume you have to remember to delete and recreate the Persistent Volume too if you ever want to run your application again in the future.
 
-## Communicating from Kubernetes to the Host OS
+## <span id="docker-internal-dns">Have Kubernetes apps easily communicate with host OS apps</span>
 
-Often times I will be working on an application in the Host OS, most of my primary development is done here, you get the advantages of automatic rebuilds and IDE tooling, etc. There will be other applications that I'd like to run in Kubernetes that can talk to this application on the host OS. For example I may have a reverse proxy like nginx running in Kubernetes that needs to serve up my host OS application. This is surprisingly easy and done exactly the same as we would do it with just Docker or Docker Compose: with the `host.docker.internal` DNS name. 
+Often times I will be working on an application in the host OS, most of my primary development is done here, you get the advantages of automatic rebuilds and IDE tooling, etc. There will be other applications that I'd like to run in Kubernetes that can talk to this application on the host OS. For example I may have a reverse proxy like nginx running in Kubernetes that needs to serve up my host OS application. This is surprisingly easy and done exactly the same as we would do it with just Docker or Docker Compose: with the `host.docker.internal` DNS name. 
 
 An example of my nginx config running on kubernetes that reverse proxies my app running on the host port 4200:
 ```
@@ -93,7 +81,7 @@ server {
     }
 ```
 
-## Accessing the apps on Kubernetes
+## <span id="expose-app">Have host OS apps easily communicate with Kubernetes apps</span>
 
 Whether it be an application I'm developing on the host OS communicating with an application on Kubernetes or if I want to access the application on Kubernetes in a web browser or some kind of client, that application needs to be exposed. There are two ways to do this. The first, and not my recommended approach, is to use [kubectl port-forwarding](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/#forward-a-local-port-to-a-port-on-the-pod). I don't like this approach because you need to be re-run this command whenever you restart your cluster for every service that needs to be exposed. My preferred approach is to use a [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport) service.
 
