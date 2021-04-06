@@ -17,7 +17,7 @@ If you want to skip to how all of this works out here's the [TL;DR](#tldr) other
 
 ## <span id="build-local">Build an image locally and run it on the Kubernetes</span>
 
-With Docker Compose I can build an image and run it (assuming I have my docker-compose files setup) with just one simple command `docker-compose up --build`. What's the analogue of this with Kubernetes? When I build an image, how can Kubernetes pull it? Do I need to a local [Docker Registry](https://docs.docker.com/registry) to push my image to? 
+With Docker Compose I can build an image and run it (assuming I have my docker-compose files setup) with just one simple command `docker-compose up --build`. What's the analogue of this with Kubernetes? When I build an image, how can Kubernetes pull it? Do I need a local [Docker Registry](https://docs.docker.com/registry) to push my image to? 
 
 The answer to that last question, luckily, is "No". When building an image locally using the standard docker build command `docker build --tag my-image:local .` the image is stored in docker's image cache. This is the *same* image cache Kubernetes will use because it's using the *same* docker insance. There's two things to note here:
 1. The `image` name of a Kubernetes pod must exactly match the name given via the `--tag` parameter of the `docker build` command. In the example given it's `my-image:local`
