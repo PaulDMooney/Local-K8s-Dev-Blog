@@ -25,9 +25,11 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
+      {{- if .Values.pvc }}
         - name: data-volume
           persistentVolumeClaim:
             claimName: {{ include "request-count-server.fullname" . }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -41,8 +43,10 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
+          {{- if .Values.pvc }}
             - name: data-volume
               mountPath: /data
+          {{- end }}
           
       {{- with .Values.nodeSelector }}
       nodeSelector:
