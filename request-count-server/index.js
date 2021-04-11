@@ -24,6 +24,13 @@ app.get('/request-count', async (req, res) => {
   res.send(newCount);
 })
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
+})
+
+process.on('SIGTERM', () => {
+  debug('SIGTERM signal received: closing HTTP server')
+  server.close(() => {
+    debug('HTTP server closed')
+  })
 })
