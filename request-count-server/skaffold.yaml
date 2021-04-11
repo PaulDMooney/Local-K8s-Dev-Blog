@@ -1,12 +1,13 @@
 apiVersion: skaffold/v2beta13
 kind: Config
-# metadata:
-#   name: request-count-server
+metadata:
+  name: request-count-server
 build:
   artifacts:
-    - image: request-count-server
+    - image: &imageName request-count-server
+      # custom build if we want to keep `npm ci` out of the dockerfile for some reason.
       custom:
-        buildCommand: npm ci && docker build .
+        buildCommand: touch .overrides.yaml && npm ci && docker build --tag $IMAGE .
 deploy:
   helm:
     releases:
@@ -14,15 +15,16 @@ deploy:
         chartPath: helm/request-count-server
         valuesFiles:
           - ./helm/values/values-local.yaml
+          - .overrides.yaml # easier than setValueTemplates
         artifactOverrides:
-          imageOverride: request-count-server
-        namespace: test-app
+          imageOverride: *imageName
+        namespace: &namespace test-app
   kubectl:
     manifests:
+      # Let skaffold handle the persistent volume too. Alternatively this could have been part of the helm chart.
       - volumes/pv-local.yaml
 portForward:
   - resourceType: Service
     resourceName: request-count-server
-    namespace: test-app
+    namespace: *namespace
     port: 3000
-    localPort: 3000
