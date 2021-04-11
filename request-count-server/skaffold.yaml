@@ -1,0 +1,28 @@
+apiVersion: skaffold/v2beta13
+kind: Config
+# metadata:
+#   name: request-count-server
+build:
+  artifacts:
+    - image: request-count-server
+      custom:
+        buildCommand: npm ci && docker build .
+deploy:
+  helm:
+    releases:
+      - name: request-count-server
+        chartPath: helm/request-count-server
+        valuesFiles:
+          - ./helm/values/values-local.yaml
+        artifactOverrides:
+          imageOverride: request-count-server
+        namespace: test-app
+  kubectl:
+    manifests:
+      - volumes/pv-local.yaml
+portForward:
+  - resourceType: Service
+    resourceName: request-count-server
+    namespace: test-app
+    port: 3000
+    localPort: 3000
