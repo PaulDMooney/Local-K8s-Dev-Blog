@@ -134,7 +134,7 @@ Working with kubernetes, and then layering in extra tools like Helm, there are a
 ```
 docker build --tag myimage:local \
 && kubectl apply -f my-volume.yaml \
-&& my-helm install my-app ./my-app -f values-local.yaml
+&& helm install my-app ./my-app -f values-local.yaml
 ```
 
 * Build and restart your app: 
